@@ -127,10 +127,12 @@
 
         ApiMiddleware.prototype.listRootCabinets = function (pageNumber, itemsPerPage) {
           var repository = dctmClient.getCachedRepository()
-          return dctmClient.getCabinets(repository,
+          var temp =  dctmClient.getCabinets(repository,
             dctmConstants.QUERY_PARAMS.INLINE, true,
             dctmConstants.QUERY_PARAMS.PAGE, pageNumber,
             dctmConstants.QUERY_PARAMS.ITEMS_PER_PAGE, itemsPerPage)
+          console.log("cabinets: " + temp) 
+          return(temp)
         }
 
         ApiMiddleware.prototype.listFolderChildren = function (parent, pageNumber, itemsPerPage) {

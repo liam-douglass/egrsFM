@@ -1,7 +1,10 @@
 {
   "name": "documentum-ng-file-manager",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "request": "^2.88.2",
+    "xmlhttprequest": "^1.8.0"
+  },
   "scripts": {
     "test": "gulp test"
   },

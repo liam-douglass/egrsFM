@@ -27,7 +27,14 @@
 
         FileNavigator.prototype.refresh = function () {
           var self = this
+          console.log("path: " + self.currentPath)
+          console.log("endpath")
+          var path2
+          //var path2 = self.currentPath.unshift('egrs')
+          //var path2 = self.currentPath.unshift('')
+
           var path = self.currentPath.join('/')
+
           self.list(path, self.folderId, self.folderObject).then(function (feed) {
             var objects = self.apiMiddleware.parseEntries(feed.data)
             self.fileList = (objects || []).map(function (file) {

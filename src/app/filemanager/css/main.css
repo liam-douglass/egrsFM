@@ -1,18 +1,36 @@
 body {
   font-size: 14px;
   height: 100vh;
-}
+  /*background: linear-gradient(rgba(2,0,36,1) 0%, rgba(252,91,142,1) 0%, rgba(236,38,16,1) 100%); 
+*/
+  background-color: #27293e !important;
+  }
 
 *,
 *:focus {
   outline: 0!important;
 }
 
+modal-body{
+  background-color: #27293e !important;
+}
 .navbar {
   min-height: 32px;
   margin-bottom: 0;
   border: 0;
   border-radius: 0;
+  background: #1e1e2f;
+}
+
+.btn-success:focus {
+  background:rgba(2,0,36,1) !important;
+  background:linear-gradient(rgba(2,0,36,1) 0%, rgba(252,91,142,1) 0%, rgba(236,38,16,1) 100%) !important;
+  border-color: #8064A2;
+}
+.btn-success:hover {
+  background:rgba(2,0,36,1) !important;
+  background: linear-gradient(rgba(2,0,36,1) 0%, rgba(252,91,142,1) 0%, rgba(236,38,16,1) 100%) !important;
+  border-color: #8064A2;
 }
 
 .navbar .navbar-toggle {
@@ -45,6 +63,7 @@ body {
 
 .breadcrumb {
   border-radius: 0;
+  background-color : #27293e;
 }
 
 .breadcrumb .btn {
@@ -52,15 +71,24 @@ body {
 }
 
 .btn.btn-default {
-  color: #444;
-  background-color: #FAFAFA;
+  color: #FAFAFA;
+  border-style: solid;
+  border-color: #fc5b8e;
+  border-width:thin;
+  background-color: #1e1e2f;
+  /* this is the css of the buttons except sig*/
 }
 
 .btn {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
   font-weight: 500;
   letter-spacing: .01em;
-  border: none;
+  color: #FAFAFA;
+  border-style: solid;
+  border-color: #fc5b8e;
+  border-width:thin;
+  background-color: #1e1e2f !important;
+  /*border: none;*/
 }
 
 textarea.code {
@@ -88,6 +116,8 @@ textarea.code {
   margin-right: -21px;
   margin-bottom: 20px;
   margin-left: -20px;
+  background-color: #27293e !important;
+  color: white !important;
 }
 
 .nav-sidebar > li > a {
@@ -98,8 +128,8 @@ textarea.code {
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-  color: #fff;
-  background-color: #2196F3;
+  color: white;
+  background-color: #27293e !important;
 }
 
 .main {
@@ -117,7 +147,7 @@ textarea.code {
 }
 
 .file-tree ul.nav.nav-sidebar > li {
-  border-left: 1px solid #ddd;
+  border-left: 1px solid #fc5b8e;
   padding-left: 4px;
 }
 
@@ -180,7 +210,7 @@ textarea.code {
 
 .table-files .selected,
 .iconset .thumbnail.selected {
-  background: #2196F3;
+  background: #fc5b8e;
 }
 
 .iconset .thumbnail.selected,
@@ -218,11 +248,11 @@ textarea.code {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #bbb;
+  background-color: white;
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background-color: #888;
+  background-color: white;
 }
 
 .dropdown-menu.dropdown-right-click {
@@ -261,12 +291,12 @@ table th > a:focus {
 }
 
 .sortorder:after {
-  color: #2196f3;
+  color: #white;
   content: '\25bc';
 }
 
 .sortorder.reverse:after {
-  color: #2196f3;
+  color: #white;
   content: '\25b2';
 }
 
@@ -278,6 +308,7 @@ table th > a:focus {
 
 .mr2 {
   margin-right: 2px;
+  color: white !important;
 }
 
 .mr5 {
@@ -335,6 +366,70 @@ table th > a:focus {
     border-right: 1px solid #eee;
   }
 }
+/*BOOTSTRAP*/
+a {
+  color: white;
+  text-decoration: none;
+}
+.btn-primary:hover, .btn-primary:active:hover {
+  background-color: #fc5b8e !important;
+}
+
+.btn-primary:hover, .btn-primary.click-active {
+  background-color: #fc5b8e !important;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+  color: #ffffff;
+  background-color: #fc5b8e;
+  border-color: #fc5b8e;
+}
+.btn-primary {
+  color: #ffffff;
+  background-color: transparent;
+  border-color: #fc5b8e;
+}
+
+body {
+  font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  line-height: 1.846;
+  color: #ffffff;
+}
+
+.form-control {
+  color: white !important;
+}
+
+.dropbtnlogin {
+  color: white;
+  border: none;
+}
+
+.dropdownlogin {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownlogin-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  z-index: 1;
+}
+
+.dropdownlogin-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdownlogin-content a:hover {background-color: #ddd;}
+
+.dropdownlogin:hover .dropdownlogin-content {display: block;}
+
+.dropdownlogin:hover .dropbtnlogin {background-color: #3e8e41;}
 
 @media (max-width: 768px) {
   .navbar-form .btn {

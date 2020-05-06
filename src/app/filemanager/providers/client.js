@@ -1,11 +1,11 @@
 -function (angular) {
   var module = angular.module('dctmRestClient', [])
-
   module.constant('dctmConstants', {
     LOGIN_INFO: {
       AUTH_HEADER: 'authHeader',
       BASE_URI: 'baseUri',
-      REPOSITORY: 'repository'
+      REPOSITORY: 'repository',
+      CABINET: 'cabinet'
     },
     HEADERS: {
       ACCEPT: 'Accept',
@@ -79,17 +79,23 @@
     REPOSITORY_RESOURCE: 'repoResource'
   })
 
+ 
   module.provider('clientLocalStore', function (dctmConstants) {
     this.$get = function () {
       return new ClientLocalStore()
     }
 
     function ClientLocalStore () {
+      console.log("auth attempt\n")
+
       var baseUri = localStorage.getItem(dctmConstants.LOGIN_INFO.BASE_URI)
       var repo = localStorage.getItem(dctmConstants.LOGIN_INFO.REPOSITORY)
+      var cab = localStorage.getItem(dctmConstants.LOGIN_INFO.CABINET)
       var authHeader = localStorage.getItem(dctmConstants.LOGIN_INFO.AUTH_HEADER)
       var repoResource = localStorage.getItem(dctmConstants.REPOSITORY_RESOURCE)
       if (baseUri && repo && authHeader) {
+        console.log("auth succeed\n")
+
         this.authenticated = true
         this.loginInfo = {
           baseUri: baseUri,
@@ -97,6 +103,12 @@
           authHeader: authHeader
         }
       }else {
+        console.log("auth failed\n")
+        console.log(baseUri)
+        console.log(repo)
+        console.log(cab)
+        console.log(authHeader)
+
         this.authenticated = false
         this.loginInfo = null
       }
@@ -104,6 +116,7 @@
 
     ClientLocalStore.prototype = {
       'saveLogin': function saveLogin (loginInfo, repo) {
+        console.log("saving login: " + loginInfo);
         this.loginInfo = loginInfo
         localStorage.setItem(dctmConstants.LOGIN_INFO.BASE_URI, loginInfo.baseUri)
         localStorage.setItem(dctmConstants.LOGIN_INFO.REPOSITORY, loginInfo.repoName)
@@ -114,6 +127,7 @@
       'clearLogin': function clearLogin () {
         localStorage.removeItem(dctmConstants.LOGIN_INFO.BASE_URI)
         localStorage.removeItem(dctmConstants.LOGIN_INFO.REPOSITORY)
+        localStorage.removeItem(dctmConstants.LOGIN_INFO.CABINET)
         localStorage.removeItem(dctmConstants.LOGIN_INFO.AUTH_HEADER)
         localStorage.removeItem(dctmConstants.REPOSITORY_RESOURCE)
         this.authenticated = false
@@ -237,9 +251,12 @@
           var headers = {}
           headers[dctmConstants.HEADERS.ACCEPT] = dctmConstants.MIME.ANY_JSON
           var link = homeDocUri(baseUri)
+          console.log(link + ' ' + headers)
           return this.http({method: 'GET',url: link,headers: headers})
         },
+        //this getRepositories function applies to the clientBase module/scope
         'getRepositories': function getRepositories (services) {
+          console.log('entered getRepositories')
           var headers = {}
           if (!services) {
             throw new Error('"Services" entry must be provided')
@@ -251,6 +268,33 @@
             throw new Error('No Repositories link in services entry')
           }
           var link = services.resources[dctmConstants.LINK_RELATIONS.REPOSITORIES].href
+          var temp = this.http({method: 'GET',url: link,headers: headers})
+          console.log('getRepositories request done')
+
+          //console.log('reached getcab')
+          //var url="https://lippizzan3.rtpnc.epa.gov/dctm-rest/repositories/ecmsrmr65/cabinets.json"
+          // var url="http://demo-server:8080/dctm-rest/repositories/MyRepo"
+          // var maybecab = this.http({method: 'GET',url: url, headers: headers})
+          // console.log(maybecab)
+          return temp
+        },
+        //this function applies to the clientBase module/scope
+        'getCabinets': function getCabinets (services, repo) {
+          //TEST THIS
+          var headers = {}
+          if (!services) {
+            throw new Error('"Services" entry must be provided')
+          }
+          if (!repo) {
+            throw new Error('"Repo" entry must be provided')
+          }
+          if (!services.resources) {
+            throw new Error('Illegal "services" entry"')
+          }
+          if (!services.resources[dctmConstants.LINK_RELATIONS.CABINETS]) {
+            throw new Error('No Cabinets link in services entry')
+          }
+          var link = services.resources[dctmConstants.LINK_RELATIONS.CABINETS].href
           return this.http({method: 'GET',url: link,headers: headers})
         },
         'getRepository': function getRepository (repos, repoName, headers) {
@@ -288,6 +332,8 @@
     }
   })
 
+  
+
   module.provider('dctmAuth', function (dctmConstants) {
     this.$get = ['clientBase', 'clientLocalStore', function (clientBase, clientLocalStore) {
       function DCTMAuthenticationClient () {
@@ -295,23 +341,39 @@
 
       DCTMAuthenticationClient.prototype = {
         'login': function (loginInfo) {
+          console.log('attempting login function');
+          console.log('loginInfo: ' + loginInfo);
+
           var defer = clientBase.q.defer()
           var promise = defer.promise
           var client = clientBase
+          console.log(1)
+
           client.getHomeDocument(loginInfo.baseUri).then(function (resp) {
             client.getRepositories(resp.data).then(function (resp) {
+
+              console.log(3);
+
               var headers = {}
               var credentialHeader = basicAuth(loginInfo)
               headers[dctmConstants.HEADERS.AUTHORIZATION] = credentialHeader
               client.getRepository(resp.data, loginInfo.repoName, headers).then(function (resp) {
+                console.log(4);
+
                 loginInfo.credentialHeader = credentialHeader
+                console.log("logging in: " + loginInfo);
                 clientLocalStore.saveLogin(loginInfo, resp.data)
+                //testgetcab(resp.data);
                 defer.resolve(resp)
               }, function (error) {
+                console.log('e1')
                 defer.reject(error)
               })
             })
           }, function (error) {
+            console.log(error)
+            console.log('e2')
+
             defer.reject(error)
           })
           return promise
@@ -389,6 +451,7 @@
         'getHomeDocument': function getHomeDocument (baseUri) {
           return this.clientBase.getHomeDocument.apply(this.clientBase, arguments)
         },
+        //this getRepositories function applies to the dctmClient object
         'getRepositories': function getRepositories (services) {
           return this.clientBase.getRepositories.apply(this.clientBase, arguments)
         },

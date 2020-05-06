@@ -3,13 +3,18 @@
   angular.module('dctmNgFileManager')
     .provider('fileManagerConfig', function () {
       var values = {
-        appName: 'Documentum AngularJS File Manager for Documentum REST Sample',
+        appName: 'EGRS Upload/Download Tool',
         defaultLang: 'en',
+        
 
-        rootContext: '',
-        repositories: [],
-        repositoryName: null,
-        repository: null,
+        //rootContext: 'https://lippizzan3.rtpnc.epa.gov/dctm-rest/',
+        //rootContext: 'https://lippizzan3.rtpnc.epa.gov/dctm-rest/repositories/ecmsrmr65/cabinets/0c01efd08011273b',
+        rootContext: 'https://lippizzan3.rtpnc.epa.gov/dctm-rest/',
+        repositories: ['ecmsgr65', 'two', 'test', 'four'],
+        repositoryName: 'ecmsrmr65',
+        repository: 'ecmsrmr65',
+        cabinetName:'',
+        cabinets: [],
         username: null,
         password: null,
         signedin: false,

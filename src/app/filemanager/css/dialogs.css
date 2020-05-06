@@ -1,5 +1,6 @@
 .modal {
   word-wrap: break-word;
+  
 }
 
 .modal .label.error-msg {
@@ -17,11 +18,29 @@
 }
 
 .modal .modal-header {
-  padding-bottom: 0;
+  background-color: #27293e !important;
+  color: white;
+}
+.modal .modal-body {
+  background-color: #27293e !important;
+  color: white;
+
+}
+.modal .modal-footer {
+  background-color: #27293e !important;
+  color: white;
+
+}
+.modal .modal-title {
+  background-color: #27293e !important;
+  color: white;
+
 }
 
 .modal .breadcrumb {
   margin-bottom: 10px;
+  background-color: #444 !important;
+
 }
 
 .modal-fullscreen .modal-dialog,
@@ -31,6 +50,8 @@
   position: absolute;
   right: 0;
   top: 0;
+  background-color: #444 !important;
+
 }
 
 .modal-fullscreen .modal-dialog {
@@ -46,6 +67,8 @@
   -moz-box-shadow: inherit;
   -o-box-shadow: inherit;
   box-shadow: inherit;
+  background-color: #444 !important;
+
 }
 
 .modal-fullscreen textarea.code {

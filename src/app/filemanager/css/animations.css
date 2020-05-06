@@ -60,7 +60,7 @@
 
 @keyframes colors {
   0% {
-    stroke: #4285F4;
+    stroke: #fc5b8e;
   }
 
   25% {
@@ -72,11 +72,11 @@
   }
 
   75% {
-    stroke: #1B9A59;
+    stroke: linear-gradient(rgba(2,0,36,1) 0%, rgba(252,91,142,1) 0%, rgba(236,38,16,1) 100%); 
   }
 
   100% {
-    stroke: #4285F4;
+    stroke: #fc5b8e;
   };
 }
 
@@ -96,7 +96,7 @@
   100% {
     stroke-dasharray: 90,150;
     stroke-dashoffset: -124;
-    stroke: green;
+    stroke: linear-gradient(rgba(2,0,36,1) 0%, rgba(252,91,142,1) 0%, rgba(236,38,16,1) 100%); 
   };
 }
 
@@ -156,7 +156,7 @@
 .spinner-container .path {
   stroke-dasharray: 1,150;
   stroke-dashoffset: 0;
-  stroke: #2196F3;
+  stroke: #fc5b8e;
   stroke-linecap: round;
   -webkit-animation: dash 1.5s ease-in-out infinite, colors 5.6s ease-in-out infinite;
   animation: dash 1.5s ease-in-out infinite, colors 5.6s ease-in-out infinite;

@@ -50,24 +50,32 @@ html {
   margin: 0.2em 0;
   background: #ccc;
   color: #000;
+  background-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(252,91,142,1) 0%, rgba(236,38,16,1) 100%); 
+
   padding: 0.2em 0;
 }
 
 md-toolbar.md-default-theme {
   background-color: black;
+  background-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(252,91,142,1) 0%, rgba(236,38,16,1) 100%); 
+
 }
 
 section.jumbotron {
   margin-bottom: 30px;
   padding: 1px 30px;
-  background-color: #5aadbb;
+  /*background-color: #5aadbb;*/
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(252,91,142,1) 0%, rgba(236,38,16,1) 100%); 
   text-align: center;
 
-  color: white;
+  /*color: white;*/
+  color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(252,91,142,1) 0%, rgba(236,38,16,1) 100%); 
 }
 
 section.jumbotron h1 {
   font-size: 3em;
+  background-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(252,91,142,1) 0%, rgba(236,38,16,1) 100%); 
+
 }
 
 .techs {
