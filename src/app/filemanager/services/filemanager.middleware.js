@@ -130,8 +130,9 @@
           var temp =  dctmClient.getCabinets(repository,
             dctmConstants.QUERY_PARAMS.INLINE, true,
             dctmConstants.QUERY_PARAMS.PAGE, pageNumber,
-            dctmConstants.QUERY_PARAMS.ITEMS_PER_PAGE, itemsPerPage)
-          console.log("cabinets: " + temp) 
+            dctmConstants.QUERY_PARAMS.ITEMS_PER_PAGE, itemsPerPage,
+			      dctmConstants.QUERY_PARAMS.FILTER, 'object_name= ("eria", "egrs")')
+          console.log("cabinets: " + temp)
           return(temp)
         }
 
