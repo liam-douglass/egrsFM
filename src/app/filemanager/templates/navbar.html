@@ -21,7 +21,37 @@
     -->
     <div id="navbar" class="navbar-collapse collapse">
       <div class="navbar-form navbar-right">
+        <div class="dropdownlogin" >
+          <button class="btn btn-default btn-sm dropbtnlogin" ng-show="!config.signedin">
+            <i class="glyphicon glyphicon-log-out"></i> {{config.username}}
+          </button> 
+          <div class="dropdownlogin-content">
+            <!--<button class="btn btn-default btn-sm" ng-click="modal('signout')" ng-show="!config.signedin">
+              <i class="glyphicon glyphicon-log-out"></i> {{"sign_out" | translate}}
+              <div ng-include="config.tplPath + '/item-context-menu.html'"></div>
 
+            </button>-->
+             
+            <form ng-submit="createFolder()">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">{{"close" | translate}}</span>
+                    </button>
+                <h4 class="modal-title">{{'new_folder' | translate}}</h4>
+              </div>
+              <div class="modal-body">
+                <label class="radio">{{'folder_name' | translate}}</label>
+                <input class="form-control" ng-model="config.testname" autofocus="autofocus">
+                <div ng-include data-src="'error-bar'" class="clearfix"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="apiMiddleware.inprocess">{{"cancel" | translate}}</button>
+                <button type="submit" class="btn btn-primary" >{{'create' | translate}}</button>
+              </div>
+            </form>
+          </div>
+        </div>
         <i class="glyphicon glyphicon-search"></i>
         <input type="text" class="form-control input-sm" placeholder="{{'search' | translate}}..." ng-model="$parent.search"
                ng-keypress="($event.which === 13)?ftSearch():0">
@@ -45,7 +75,7 @@
         <button class="btn btn-default btn-sm" ng-click="$parent.setTemplate('main-table.html')" ng-show="$parent.viewTemplate !== 'main-table.html'" title="{{'list' | translate}}">
             <i class="glyphicon glyphicon-th-list"></i>
         </button>
-        <button class="btn btn-default btn-sm" ng-click="modal('signin')" ng-show="!config.signedin">
+        <button class="btn btn-default btn-sm" ng-click="modal('signin')" ng-show="config.signedin">
           <!--<i class="glyphicon glyphicon-log-in"></i> {{"sign_in" | translate}} config.repositoryName-->
           <i class="glyphicon glyphicon-log-in"></i> {{"sign_in" | translate}}
         </button>
@@ -54,13 +84,34 @@
           <i class="glyphicon glyphicon-log-out"></i> {{config.username}}
         </button>     -->   
         <div class="dropdownlogin" >
-          <button class="btn btn-default btn-sm dropbtnlogin" ng-show="config.signedin">
+          <button class="btn btn-default btn-sm dropbtnlogin" ng-show="!config.signedin">
             <i class="glyphicon glyphicon-log-out"></i> {{config.username}}
           </button> 
           <div class="dropdownlogin-content">
-            <button class="btn btn-default btn-sm" ng-click="modal('signout')" ng-show="config.signedin">
+            <!--<button class="btn btn-default btn-sm" ng-click="modal('signout')" ng-show="!config.signedin">
               <i class="glyphicon glyphicon-log-out"></i> {{"sign_out" | translate}}
-            </button> 
+              <div ng-include="config.tplPath + '/item-context-menu.html'"></div>
+
+            </button>-->
+             
+            <form ng-submit="createFolder()">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">{{"close" | translate}}</span>
+                    </button>
+                <h4 class="modal-title">{{'new_folder' | translate}}</h4>
+              </div>
+              <div class="modal-body">
+                <label class="radio">{{'folder_name' | translate}}</label>
+                <input class="form-control" ng-model="singleSelection().tempModel.name" autofocus="autofocus">
+                <div ng-include data-src="'error-bar'" class="clearfix"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="apiMiddleware.inprocess">{{"cancel" | translate}}</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="apiMiddleware.inprocess">{{'create' | translate}}</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

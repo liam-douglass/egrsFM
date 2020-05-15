@@ -291,12 +291,12 @@ table th > a:focus {
 }
 
 .sortorder:after {
-  color: #white;
+  color: white;
   content: '\25bc';
 }
 
 .sortorder.reverse:after {
-  color: #white;
+  color: white;
   content: '\25b2';
 }
 

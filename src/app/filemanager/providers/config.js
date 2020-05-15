@@ -18,6 +18,8 @@
         username: null,
         password: null,
         signedin: false,
+        testname:'',
+        testvar: true, //for debug
 
         searchForm: true,
         sidebar: true,

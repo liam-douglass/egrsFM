@@ -1,7 +1,11 @@
-<div id="context-menu" class="dropdown clearfix animated fast fadeIn">
-    <ul class="dropdown-menu dropdown-right-click" role="menu" aria-labelledby="dropdownMenu" ng-show="temps.length">
+<!--<div id="context-menu" class="dropdown clearfix animated fast fadeIn">-->
+<div id="context-menu" >
 
-        <li ng-show="singleSelection() && singleSelection().isFolder()">
+    <!--<ul class="dropdown-menu dropdown-right-click" role="menu" aria-labelledby="dropdownMenu" ng-show="temps.length">-->
+    <ul  ng-show="config.testvar"><!--DEBUG LINE-->
+
+        <!--<li ng-show="singleSelection() && singleSelection().isFolder()">-->
+        <li ng-show="config.testvar"> <!--DEBUG LINE-->
             <a href="" tabindex="-1" ng-click="smartClick(singleSelection())">
                 <i class="glyphicon glyphicon-folder-open"></i> {{'open' | translate}}
             </a>

@@ -413,6 +413,10 @@
           if (item.isEditable()) {
             return $scope.openEditItem(item)
           }
+          else {
+            console.log('misclick')
+            return TRUE
+          }
         }
 
         $scope.modal = function (id, hide, returnElement) {

@@ -50,10 +50,11 @@
             <td colspan="5">
                 {{ fileNavigator.error }}
             </td>
-        </tr>
-        <tr class="item-list" ng-repeat="item in $parent.fileList = (fileNavigator.fileList | filter: {model:{name: query}} | orderBy:predicate:reverse)" ng-show="!fileNavigator.requesting" ng-click="selectOrUnselect(item, $event)" ng-dblclick="smartClick(item)" ng-right-click="selectOrUnselect(item, $event)" ng-class="{selected: isSelected(item)}">
+        </tr><!---->
+        <tr class="item-list" ng-repeat="item in $parentI.fileList = (fileNavigator.fileList | filter: {model:{name: query}} | orderBy:predicate:reverse)" ng-show="!fileNavigator.requesting" ng-click="selectOrUnselect(item, $event)" ng-dblclick="smartClick(item)" ng-right-click="selectOrUnselect(item, $event)" ng-class="{selected: isSelected(item)}">
             <td>
-                <a ng-show="item.model.type === 'dir'" href="" title="{{item.model.name}} ({{item.model.size | humanReadableFileSize}})">
+                <!--<a ng-show="item.model.type === 'dir'" href="" title="{{item.model.name}} ({{item.model.size | humanReadableFileSize}})">-->
+                    <a  href="" title="{{item.name}} ">    
                     <i class="glyphicon glyphicon-folder-close" ></i>
                     {{item.model.name | strLimit : 64}}
                 </a>

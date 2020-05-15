@@ -5,7 +5,7 @@
       'fileManagerConfig', 'item', 'apiMiddleware', function (fileManagerConfig, Item, apiMiddleware) {
         var FileNavigator = function () {
           this.requesting = false
-          this.fileList = []
+          this.fileList = [{name:'beef'}]
           this.currentPath = []
           this.history = []
           this.error = ''
