@@ -116,6 +116,7 @@
         }
 
         $scope.uploadFiles = function () {
+          console.log("parent 0 : " + JSON.stringify($scope.fileNavigator.folderObject))
           $scope.apiMiddleware.upload($scope.uploadFileList, $scope.fileNavigator.currentPath, $scope.fileNavigator.folderObject).then(function () {
             $scope.fileNavigator.refresh()
             $scope.modal('uploadfile', true)
@@ -140,9 +141,10 @@
             return
           }
           if (item) {
+            console.log('found_item');
             return $scope.apiMiddleware.download(item)
           }
-          return $scope.apiMiddleware.downloadMultiple($scope.temps)
+          return $scope.apiMiddleware.downloadMULTTEMP($scope.temps)
         }
 
         $scope.openImagePreview = function () {

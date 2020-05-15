@@ -33,6 +33,7 @@
           compressChooseName: false,
           extract: false,
           download: true,
+          downloadMultiple: true,
           preview: true,
           remove: true
         },
