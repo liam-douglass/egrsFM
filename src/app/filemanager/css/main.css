@@ -439,7 +439,7 @@ body {
 
 @media (max-width: 475px) {
   .table.table-files .btn {
-    display: none;
+    /*display: none;*/
   }
 }
 

@@ -360,8 +360,8 @@
           <h4 class="modal-title">{{"upload_files" | translate}}</h4>
         </div>
         <div class="modal-body">
-          <label class="radio">{{"files_will_uploaded_to" | translate}} <b>/{{fileNavigator.currentPath.join('/')}}</b></label>
-          <input type="file" class="form-control" ng-file="$parent.uploadFileList" autofocus="autofocus" />
+          <label class="radio">{{"files_will_uploaded_to" | translate}} <b>/{{fileNavigator.currentPath.join('>')}}</b></label>
+          <input type="file" class="form-control" ng-file="$parent.uploadFileList" autofocus="autofocus" multiple/>
           <div ng-include data-src="'error-bar'" class="clearfix"></div>
         </div>
         <div class="modal-footer">
@@ -517,3 +517,5 @@
     </ul>
   </div>
 </script>
+
+<script src="resizable.js"></script>
