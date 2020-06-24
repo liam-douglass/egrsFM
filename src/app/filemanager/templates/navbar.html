@@ -24,7 +24,7 @@
 
         <i class="glyphicon glyphicon-search"></i>
         <input type="text" class="form-control input-sm" placeholder="{{'search' | translate}}..." ng-model="$parent.search"
-               ng-keypress="($event.which === 13)?ftSearch():0">
+               ng-keypress="($event.which === 13)?ftSearch():10">
         <button class="btn btn-default btn-sm" ng-show="config.allowedActions.upload" ng-click="modal('uploadfile')">
             <i class="glyphicon glyphicon-cloud-upload"></i> {{"upload_files" | translate}}
         </button>

@@ -12,6 +12,7 @@
           return dctmClient.getLinkFromResource(data, rel)
         }
         ApiMiddleware.prototype.parseEntries = function (data) {
+          console.log('data.entries = ' + JSON.stringify(data))
           var objects = []
           var entries = data.entries
           if (entries != null) {
@@ -136,12 +137,14 @@
         ApiMiddleware.prototype.ftSearch = function (terms, path, pageNumber, pageSize) {
           var repository = dctmClient.getCachedRepository()
           if (path && path != '/') {
+            console.log('searching path option 1: ' + path)
             return dctmClient.simpleSearch(repository, terms,
               dctmConstants.QUERY_PARAMS.LOCATIONS, path,
               dctmConstants.QUERY_PARAMS.INLINE, true,
               dctmConstants.QUERY_PARAMS.PAGE, pageNumber,
               dctmConstants.QUERY_PARAMS.ITEMS_PER_PAGE, pageSize)
           }else {
+            console.log('searching path option 2')
             return dctmClient.simpleSearch(repository, terms,
               dctmConstants.QUERY_PARAMS.INLINE, true,
               dctmConstants.QUERY_PARAMS.PAGE, pageNumber,
@@ -279,17 +282,17 @@
           return zip
         }
 
-        var zipIterator = 0
+var zipIterator = 0
         var zip
-        var globalFiles
+        var timsWholeAss
         var j
         ApiMiddleware.prototype.downloadMULTTEMP = function (files, forceNewWindow) {
           zip = new JSZip()
-          globalFiles = files
+          timsWholeAss = files
           console.log('start')
           j = 0
           getFiles(files)
-        }
+      }
 
         function getFiles(files)
         {
@@ -305,18 +308,18 @@
           var testFile = files[j]
           var testFileName = testFile.model.object.properties.object_name
 
-          dctmClient.getPrimaryContentMedia(files[j].model.object).then(function (content) {
-            // if you have to overcome cors issue, open url in a new window
-            // window.open(contentUrl, '_blank', item.model.name)
-            let bin = new Blob([content.data])
-            console.log(content.data)
-            var tempFile = zip.file(globalFiles[j].model.object.properties.object_name,content.data)
-            console.log(tempFile)
-            j++
-            getFiles(files)
-            //makeMyZip(zipIterator, files.length-1,content,zip,testFile, globalFiles[j].model.object.properties.object_name)
-          })
-        }
+            dctmClient.getPrimaryContentMedia(files[j].model.object).then(function (content) {
+              // if you have to overcome cors issue, open url in a new window
+              // window.open(contentUrl, '_blank', item.model.name)
+              let bin = new Blob([content.data])
+              console.log(content.data)
+              var tempFile = zip.file(timsWholeAss[j].model.object.properties.object_name,content.data)
+              console.log(tempFile)
+              j++
+              getFiles(files)
+              //makeMyZip(zipIterator, files.length-1,content,zip,testFile, timsWholeAss[j].model.object.properties.object_name)
+              })
+          }
 
         ApiMiddleware.prototype.downloadMULTTEMP2 = function(files, forceNewWindow){
           this.downloadMULTTEMP2(files, forceNewWindow, makeZip)

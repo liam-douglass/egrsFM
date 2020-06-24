@@ -105,7 +105,9 @@
           var currentPageSize = $scope.fileNavigator.pageSize
           return $scope.apiMiddleware.ftSearch($scope.search, currentFullPath, currentPage, currentPageSize)
             .then(function (resp) {
+              console.log('search results: ' + JSON.stringify(resp.data))
               var objects = $scope.apiMiddleware.parseEntries(resp.data)
+              //console.log("objects" + objects)
               $scope.fileNavigator.fileList = (objects || []).map(function (file) {
                 return new Item(file, '/')
               })
@@ -138,7 +140,8 @@
         $scope.download = function () {
           var item = $scope.singleSelection()
           if ($scope.selectionHas('dir')) {
-            return
+            console.log('LOG: Attempting folder download')
+            return $scope.apiMiddleware.download(item)
           }
           if (item) {
             console.log('found_item');

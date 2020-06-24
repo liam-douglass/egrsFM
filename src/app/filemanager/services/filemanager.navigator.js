@@ -12,7 +12,7 @@
           this.folderId = ''
           this.folderObject = {}
           this.pageNumber = 1
-          this.pageSize = 20
+          this.pageSize = 70
           this.apiMiddleware = new apiMiddleware()
         }
 

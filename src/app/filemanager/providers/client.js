@@ -521,6 +521,7 @@
           var link = findLinkInLinksArray(document.links, dctmConstants.LINK_RELATIONS.PRIMARY_CONTENT)
           link = appendURLParams(link, arguments)
           return this.get(link)
+          
         },
         'setContent': function setContent (document, binary) {
           var link = findLinkInLinksArray(document.links, dctmConstants.LINK_RELATIONS.CONTENTS)
@@ -777,9 +778,19 @@
           return this['delete'](link)
         },
         'simpleSearch': function simpleSearch (repository, q) {
+          console.log('entered simpleSearch()')
+          //console.log('simpleSearch arg1: ' + JSON.stringify(repository))
+          console.log('simpleSearch arg2: ' + JSON.stringify(q))
+
           var link = findLinkInLinksArray(repository.links, dctmConstants.LINK_RELATIONS.SEARCH)
+          console.log("link1: " + link)
           link = appendURLParams(link, [dctmConstants.QUERY_PARAMS.Q, q])
+          console.log("link2: " + link)
+
           link = appendURLParams(link, arguments)
+
+          console.log('link3: ' + link)
+          console.log(this.get(link))
           return this.get(link)
         }
       }
@@ -843,6 +854,11 @@
   }
 
   function findLinkInLinksArray (array, rel, title) {
+    console.log('entered findLinkInLinkArray')
+    console.log('arg1 length: ' + array.length)
+    console.log('arg2: ' + JSON.stringify(rel))
+    console.log('arg3: ' + JSON.stringify(title))
+
     if (!(array instanceof Array)) {
       throw new Error('Illegal links')
     }
@@ -854,18 +870,22 @@
     for (var i = 0; i < array.length; i++) {
       var link = array[i]
       if (link.rel == rel) {
+        console.log('rel hit at ' + i)
         if (title) {
           if (link.title == title) {
+            console.log('title hit at ' + i)
             found = link
             break
           }
         }else {
+          console.log('no title at ' + i)
           found = link
           break
         }
       }
     }
     if (found == null) {
+      console.log('No Result Found in findLinkInLinkArray()')
       return null
     }
     var uri = found.href
@@ -875,6 +895,8 @@
         uri = uri.substring(0, uri.indexOf('{'))
       }
     }
+    //uri= link/repo/search
+    console.log('result uri: ' + uri)
     return uri
   }
 }(angular);
